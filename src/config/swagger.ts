@@ -11,6 +11,10 @@ export const swaggerSpec: JsonObject = {
   },
   servers: [
     {
+      url: "https://zorvyn-puce.vercel.app",
+      description: "Production server",
+    },
+    {
       url: "http://localhost:3000",
       description: "Local development server",
     },

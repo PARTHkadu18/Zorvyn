@@ -27,6 +27,11 @@ app.use(limiter);
 
 // ── Swagger API Documentation ──────────────────────────
 app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec, {
+  customCssUrl: "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.3.0/swagger-ui.min.css",
+  customJs: [
+    "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.3.0/swagger-ui-bundle.js",
+    "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.3.0/swagger-ui-standalone-preset.js"
+  ],
   customCss: '.swagger-ui .topbar { display: none }',
   customSiteTitle: "Zorvyn API Docs",
 }));

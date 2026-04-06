@@ -1,0 +1,20 @@
+import "dotenv/config";
+import { PrismaClient } from "@prisma/client";
+import { PrismaPg } from "@prisma/adapter-pg";
+import pg from "pg";
+
+const pool = new pg.Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: { rejectUnauthorized: false },
+});
+const adapter = new PrismaPg(pool);
+
+// Add prisma to the NodeJS global type
+declare global {
+  var prisma: PrismaClient | undefined;
+}
+
+// Prevent multiple instances of Prisma Client in development
+export const prisma = global.prisma || new PrismaClient({ adapter });
+
+if (process.env.NODE_ENV !== "production") global.prisma = prisma;

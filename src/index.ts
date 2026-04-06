@@ -54,7 +54,11 @@ app.get("/api/health", (req, res) => {
 // Final handler for errors
 app.use(errorHandler);
 
-app.listen(PORT, () => {
-  console.log(`🚀 Server is running on http://localhost:${PORT}`);
-  console.log(`📄 API Docs available at http://localhost:${PORT}/api/docs`);
-});
+if (process.env.NODE_ENV !== "production") {
+  app.listen(PORT, () => {
+    console.log(`🚀 Server is running on http://localhost:${PORT}`);
+    console.log(`📄 API Docs available at http://localhost:${PORT}/api/docs`);
+  });
+}
+
+export default app;
